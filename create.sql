@@ -300,7 +300,7 @@ CREATE TABLE IF NOT EXISTS open_payments_deleted (
 	Record_ID text
 );
 
-TRUNCATE open_payments_deleted
+TRUNCATE open_payments_deleted;
 
 CREATE TABLE IF NOT EXISTS dur_committee_members (
 	first_name text,
@@ -322,4 +322,6 @@ CREATE TABLE IF NOT EXISTS dur_committee_members (
 	conflict_details text
 );
 
-TRUNCATE dur_committee_members
+TRUNCATE dur_committee_members;
+
+GRANT ALL ON TABLE dur_committee_members TO redash;
