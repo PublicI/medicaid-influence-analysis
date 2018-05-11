@@ -308,7 +308,7 @@ CREATE TABLE IF NOT EXISTS dur_committee_members (
 	middle_initial text,
 	degree_1 text,
 	degree_2 text,
-	state text,
+	state_name text,
 	dur_pt_other text,
 	info_date text,
 	date_minutes_or_web text,

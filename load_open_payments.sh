@@ -261,3 +261,61 @@ for year in 2016 2015 2014 2013; do
 	psql -U postgres -h db.fivetwentyseven.com -c "COPY open_payments_deleted FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/deleted/OP_REMOVED_DELETED_PGYR"$year"_P01172018.csv" health
 done
 psql -U postgres -h db.fivetwentyseven.com -c "COPY dur_committee_members FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/dur_committee_members.csv" health
+psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE dur_committee_members
+SET first_name = TRIM(UPPER(first_name)),
+    last_name = TRIM(UPPER(last_name)),
+    state_name = TRIM(UPPER(state_name));"
+psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE open_payments_general
+SET physician_first_name = TRIM(UPPER(physician_first_name)),
+	physician_last_name = TRIM(UPPER(physician_last_name)),
+	recipient_state = TRIM(UPPER(recipient_state));"
+psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE open_payments_ownership
+SET physician_first_name = TRIM(UPPER(physician_first_name)),
+	physician_last_name = TRIM(UPPER(physician_last_name)),
+	recipient_state = TRIM(UPPER(recipient_state));"
+psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE open_payments_research
+SET physician_first_name = TRIM(UPPER(physician_first_name)),
+	physician_last_name = TRIM(UPPER(physician_last_name)),
+	recipient_state = TRIM(UPPER(recipient_state)),
+	principal_investigator_1_first_name = TRIM(UPPER(principal_investigator_1_first_name)),
+	principal_investigator_1_last_name = TRIM(UPPER(principal_investigator_1_last_name)),
+	principal_investigator_1_state = TRIM(UPPER(principal_investigator_1_state)),
+	principal_investigator_2_first_name = TRIM(UPPER(principal_investigator_2_first_name)),
+	principal_investigator_2_last_name = TRIM(UPPER(principal_investigator_2_last_name)),
+	principal_investigator_2_state = TRIM(UPPER(principal_investigator_2_state)),
+	principal_investigator_3_first_name = TRIM(UPPER(principal_investigator_3_first_name)),
+	principal_investigator_3_last_name = TRIM(UPPER(principal_investigator_3_last_name)),
+	principal_investigator_3_state = TRIM(UPPER(principal_investigator_3_state)),
+	principal_investigator_4_first_name = TRIM(UPPER(principal_investigator_4_first_name)),
+	principal_investigator_4_last_name = TRIM(UPPER(principal_investigator_4_last_name)),
+	principal_investigator_4_state = TRIM(UPPER(principal_investigator_4_state)),
+	principal_investigator_5_first_name = TRIM(UPPER(principal_investigator_5_first_name)),
+	principal_investigator_5_last_name = TRIM(UPPER(principal_investigator_5_last_name)),
+	principal_investigator_5_state = TRIM(UPPER(principal_investigator_5_state));"
+psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON dur_committee_members(first_name);
+CREATE INDEX ON dur_committee_members(last_name);
+CREATE INDEX ON dur_committee_members(state_name);"
+psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_general(physician_first_name);
+CREATE INDEX ON open_payments_general(physician_last_name);
+CREATE INDEX ON open_payments_general(recipient_state);"
+psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_ownership(physician_first_name);
+CREATE INDEX ON open_payments_ownership(physician_last_name);
+CREATE INDEX ON open_payments_ownership(recipient_state);"
+psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_research(physician_first_name);
+CREATE INDEX ON open_payments_research(physician_last_name);
+CREATE INDEX ON open_payments_research(recipient_state);
+CREATE INDEX ON open_payments_research(principal_investigator_1_first_name);
+CREATE INDEX ON open_payments_research(principal_investigator_1_last_name);
+CREATE INDEX ON open_payments_research(principal_investigator_1_state);
+CREATE INDEX ON open_payments_research(principal_investigator_2_first_name);
+CREATE INDEX ON open_payments_research(principal_investigator_2_last_name);
+CREATE INDEX ON open_payments_research(principal_investigator_2_state);
+CREATE INDEX ON open_payments_research(principal_investigator_3_first_name);
+CREATE INDEX ON open_payments_research(principal_investigator_3_last_name);
+CREATE INDEX ON open_payments_research(principal_investigator_3_state);
+CREATE INDEX ON open_payments_research(principal_investigator_4_first_name);
+CREATE INDEX ON open_payments_research(principal_investigator_4_last_name);
+CREATE INDEX ON open_payments_research(principal_investigator_4_state);
+CREATE INDEX ON open_payments_research(principal_investigator_5_first_name);
+CREATE INDEX ON open_payments_research(principal_investigator_5_last_name);
+CREATE INDEX ON open_payments_research(principal_investigator_5_state);"
