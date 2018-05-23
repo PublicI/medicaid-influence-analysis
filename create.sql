@@ -326,15 +326,15 @@ TRUNCATE dur_committee_members;
 
 CREATE TABLE IF NOT EXISTS nimp_lobbying (
 	jurisdiction text,
-year integer,
-clienteid text,
-client text,
-catcodegroup text,
-catcodeindustry text,
-catcodebusiness text,
-lobbyisteid text,
-lobbyist text,
-affiliate text
+	year integer,
+	clienteid text,
+	client text,
+	catcodegroup text,
+	catcodeindustry text,
+	catcodebusiness text,
+	lobbyisteid text,
+	lobbyist text,
+	affiliate text
 
 );
 
