@@ -340,6 +340,9 @@ CREATE TABLE IF NOT EXISTS nimp_lobbying (
 
 TRUNCATE nimp_lobbying;
 
-
+GRANT ALL ON TABLE open_payments_general TO redash;
+GRANT ALL ON TABLE open_payments_research TO redash;
+GRANT ALL ON TABLE open_payments_ownership TO redash;
+GRANT ALL ON TABLE open_payments_deleted TO redash;
 GRANT ALL ON TABLE dur_committee_members TO redash;
 GRANT ALL ON TABLE nimp_lobbying TO redash;
