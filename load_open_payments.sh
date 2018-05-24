@@ -297,13 +297,16 @@ CREATE INDEX ON dur_committee_members(last_name);
 CREATE INDEX ON dur_committee_members(state_name);"
 psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_general(physician_first_name);
 CREATE INDEX ON open_payments_general(physician_last_name);
-CREATE INDEX ON open_payments_general(recipient_state);"
+CREATE INDEX ON open_payments_general(recipient_state);
+CREATE INDEX ON open_payments_general(physician_profile_id);"
 psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_ownership(physician_first_name);
 CREATE INDEX ON open_payments_ownership(physician_last_name);
-CREATE INDEX ON open_payments_ownership(recipient_state);"
+CREATE INDEX ON open_payments_ownership(recipient_state);
+CREATE INDEX ON open_payments_ownership(physician_profile_id);"
 psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_research(physician_first_name);
 CREATE INDEX ON open_payments_research(physician_last_name);
 CREATE INDEX ON open_payments_research(recipient_state);
+CREATE INDEX ON open_payments_research(physician_profile_id);
 CREATE INDEX ON open_payments_research(principal_investigator_1_first_name);
 CREATE INDEX ON open_payments_research(principal_investigator_1_last_name);
 CREATE INDEX ON open_payments_research(principal_investigator_1_state);

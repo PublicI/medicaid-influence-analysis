@@ -29,9 +29,9 @@ CREATE TABLE IF NOT EXISTS open_payments_general (
 	Applicable_Manufacturer_or_Applicable_GPO_Making_Payment_Name text,
 	Applicable_Manufacturer_or_Applicable_GPO_Making_Payment_State text,
 	Applicable_Manufacturer_or_Applicable_GPO_Making_Payment_Country text,
-	Total_Amount_of_Payment_USDollars text,
+	Total_Amount_of_Payment_USDollars double precision,
 	Date_of_Payment text,
-	Number_of_Payments_Included_in_Total_Amount text,
+	Number_of_Payments_Included_in_Total_Amount integer,
 	Form_of_Payment_or_Transfer_of_Value text,
 	Nature_of_Payment_or_Transfer_of_Value text,
 	City_of_Travel text,
@@ -236,7 +236,7 @@ CREATE TABLE IF NOT EXISTS open_payments_research (
 	Product_Category_or_Therapeutic_Area_5 text,
 	Name_of_Drug_or_Biological_or_Device_or_Medical_Supply_5 text,
 	Associated_Drug_or_Biological_NDC_5 text,
-	Total_Amount_of_Payment_USDollars text,
+	Total_Amount_of_Payment_USDollars double precision,
 	Date_of_Payment text,
 	Form_of_Payment_or_Transfer_of_Value text,
 	Expenditure_Category1 text,
@@ -278,7 +278,7 @@ CREATE TABLE IF NOT EXISTS open_payments_ownership (
 	Physician_Specialty text,
 	Record_ID text,
 	Program_Year text,
-	Total_Amount_Invested_USDollars text,
+	Total_Amount_Invested_USDollars double precision,
 	Value_of_Interest text,
 	Terms_of_Interest text,
 	Submitting_Applicable_Manufacturer_or_Applicable_GPO_Name text,
@@ -305,21 +305,7 @@ TRUNCATE open_payments_deleted;
 CREATE TABLE IF NOT EXISTS dur_committee_members (
 	first_name text,
 	last_name text,
-	middle_initial text,
-	degree_1 text,
-	degree_2 text,
-	state_name text,
-	dur_pt_other text,
-	info_date text,
-	date_minutes_or_web text,
-	industry_rep text,
-	location text,
-	specialty text,
-	committee_alt_name text,
-	notes text,
-	disclosure_received text,
-	conflict_disclosed text,
-	conflict_details text
+	state_name text
 );
 
 TRUNCATE dur_committee_members;
