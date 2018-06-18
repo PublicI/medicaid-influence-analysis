@@ -302,13 +302,15 @@ CREATE TABLE IF NOT EXISTS open_payments_deleted (
 
 TRUNCATE open_payments_deleted;
 
-CREATE TABLE IF NOT EXISTS dur_committee_members (
+CREATE TABLE IF NOT EXISTS committee_members (
 	first_name text,
 	last_name text,
-	state_name text
+	state_name text,
+	degree_1 text,
+	degree_2 text
 );
 
-TRUNCATE dur_committee_members;
+TRUNCATE committee_members;
 
 CREATE TABLE IF NOT EXISTS nppes (
 npi text,
@@ -663,6 +665,6 @@ GRANT ALL ON TABLE open_payments_general TO redash;
 GRANT ALL ON TABLE open_payments_research TO redash;
 GRANT ALL ON TABLE open_payments_ownership TO redash;
 GRANT ALL ON TABLE open_payments_deleted TO redash;
-GRANT ALL ON TABLE dur_committee_members TO redash;
+GRANT ALL ON TABLE committee_members TO redash;
 GRANT ALL ON TABLE nppes TO redash;
 GRANT ALL ON TABLE nimp_lobbying TO redash;

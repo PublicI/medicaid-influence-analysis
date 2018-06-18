@@ -260,11 +260,13 @@ for year in 2016 2015 2014 2013; do
 	echo $year
 	psql -U postgres -h db.fivetwentyseven.com -c "COPY open_payments_deleted FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/deleted/OP_REMOVED_DELETED_PGYR"$year"_P01172018.csv" health
 done
-psql -U postgres -h db.fivetwentyseven.com -c "COPY dur_committee_members FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/dur_committee_members.csv" health
-psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE dur_committee_members
+psql -U postgres -h db.fivetwentyseven.com -c "COPY committee_members FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/committee_members.csv" health
+psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE committee_members
 SET first_name = TRIM(UPPER(first_name)),
     last_name = TRIM(UPPER(last_name)),
-    state_name = TRIM(UPPER(state_name));"
+    state_name = TRIM(UPPER(state_name)),
+    degree_1 = TRIM(UPPER(degree_1)),
+    degree_2 = TRIM(UPPER(degree_2));"
 psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE open_payments_general
 SET physician_first_name = TRIM(UPPER(physician_first_name)),
 	physician_last_name = TRIM(UPPER(physician_last_name)),
@@ -292,9 +294,11 @@ SET physician_first_name = TRIM(UPPER(physician_first_name)),
 	principal_investigator_5_first_name = TRIM(UPPER(principal_investigator_5_first_name)),
 	principal_investigator_5_last_name = TRIM(UPPER(principal_investigator_5_last_name)),
 	principal_investigator_5_state = TRIM(UPPER(principal_investigator_5_state));"
-psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON dur_committee_members(first_name);
-CREATE INDEX ON dur_committee_members(last_name);
-CREATE INDEX ON dur_committee_members(state_name);"
+psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON committee_members(first_name);
+CREATE INDEX ON committee_members(last_name);
+CREATE INDEX ON committee_members(state_name);
+CREATE INDEX ON committee_members(degree_1);
+CREATE INDEX ON committee_members(degree_2);"
 psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_general(physician_first_name);
 CREATE INDEX ON open_payments_general(physician_last_name);
 CREATE INDEX ON open_payments_general(recipient_state);
