@@ -646,7 +646,7 @@ healthcare_provider_taxonomy_group_15 text
 
 TRUNCATE nppes;
 
-CREATE TABLE IF NOT EXISTS nimp_lobbying (
+CREATE TABLE IF NOT EXISTS lobbying (
 	jurisdiction text,
 	year integer,
 	clienteid text,
@@ -659,7 +659,7 @@ CREATE TABLE IF NOT EXISTS nimp_lobbying (
 	affiliate text
 );
 
-TRUNCATE nimp_lobbying;
+TRUNCATE lobbying;
 
 GRANT ALL ON TABLE open_payments_general TO redash;
 GRANT ALL ON TABLE open_payments_research TO redash;
@@ -667,4 +667,4 @@ GRANT ALL ON TABLE open_payments_ownership TO redash;
 GRANT ALL ON TABLE open_payments_deleted TO redash;
 GRANT ALL ON TABLE committee_members TO redash;
 GRANT ALL ON TABLE nppes TO redash;
-GRANT ALL ON TABLE nimp_lobbying TO redash;
+GRANT ALL ON TABLE lobbying TO redash;
