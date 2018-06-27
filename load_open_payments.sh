@@ -1,6 +1,6 @@
 #!/bin/bash
 
-psql -U postgres -h db.fivetwentyseven.com -f create.sql -d health
+psql -U postgres -h db.fivetwentyseven.com -f create_open_payments.sql -d health
 for year in 2016; do
 	echo $year
 	psql -U postgres -h db.fivetwentyseven.com -c "COPY open_payments_general FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/general/OP_DTL_GNRL_PGYR"$year"_P01172018.csv" health
@@ -76,6 +76,14 @@ for year in 2015 2014 2013; do
 	)
 	FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/general/OP_DTL_GNRL_PGYR"$year"_P01172018.csv" health
 done
+psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE open_payments_general
+SET physician_first_name = TRIM(UPPER(physician_first_name)),
+	physician_last_name = TRIM(UPPER(physician_last_name)),
+	recipient_state = TRIM(UPPER(recipient_state));"
+psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_general(physician_first_name);
+CREATE INDEX ON open_payments_general(physician_last_name);
+CREATE INDEX ON open_payments_general(recipient_state);
+CREATE INDEX ON open_payments_general(physician_profile_id);"
 for year in 2016; do
 	echo $year
 	psql -U postgres -h db.fivetwentyseven.com -c "COPY open_payments_research FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/research/OP_DTL_RSRCH_PGYR"$year"_P01172018.csv" health
@@ -252,29 +260,6 @@ for year in 2015 2014 2013; do
 	)
 	FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/research/OP_DTL_RSRCH_PGYR"$year"_P01172018.csv" health
 done
-for year in 2016 2015 2014 2013; do
-	echo $year
-	psql -U postgres -h db.fivetwentyseven.com -c "COPY open_payments_ownership FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/ownership/OP_DTL_OWNRSHP_PGYR"$year"_P01172018.csv" health
-done
-for year in 2016 2015 2014 2013; do
-	echo $year
-	psql -U postgres -h db.fivetwentyseven.com -c "COPY open_payments_deleted FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/deleted/OP_REMOVED_DELETED_PGYR"$year"_P01172018.csv" health
-done
-psql -U postgres -h db.fivetwentyseven.com -c "COPY committee_members FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/committee_members.csv" health
-psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE committee_members
-SET first_name = TRIM(UPPER(first_name)),
-    last_name = TRIM(UPPER(last_name)),
-    state_name = TRIM(UPPER(state_name)),
-    degree_1 = TRIM(UPPER(degree_1)),
-    degree_2 = TRIM(UPPER(degree_2));"
-psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE open_payments_general
-SET physician_first_name = TRIM(UPPER(physician_first_name)),
-	physician_last_name = TRIM(UPPER(physician_last_name)),
-	recipient_state = TRIM(UPPER(recipient_state));"
-psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE open_payments_ownership
-SET physician_first_name = TRIM(UPPER(physician_first_name)),
-	physician_last_name = TRIM(UPPER(physician_last_name)),
-	recipient_state = TRIM(UPPER(recipient_state));"
 psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE open_payments_research
 SET physician_first_name = TRIM(UPPER(physician_first_name)),
 	physician_last_name = TRIM(UPPER(physician_last_name)),
@@ -294,19 +279,6 @@ SET physician_first_name = TRIM(UPPER(physician_first_name)),
 	principal_investigator_5_first_name = TRIM(UPPER(principal_investigator_5_first_name)),
 	principal_investigator_5_last_name = TRIM(UPPER(principal_investigator_5_last_name)),
 	principal_investigator_5_state = TRIM(UPPER(principal_investigator_5_state));"
-psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON committee_members(first_name);
-CREATE INDEX ON committee_members(last_name);
-CREATE INDEX ON committee_members(state_name);
-CREATE INDEX ON committee_members(degree_1);
-CREATE INDEX ON committee_members(degree_2);"
-psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_general(physician_first_name);
-CREATE INDEX ON open_payments_general(physician_last_name);
-CREATE INDEX ON open_payments_general(recipient_state);
-CREATE INDEX ON open_payments_general(physician_profile_id);"
-psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_ownership(physician_first_name);
-CREATE INDEX ON open_payments_ownership(physician_last_name);
-CREATE INDEX ON open_payments_ownership(recipient_state);
-CREATE INDEX ON open_payments_ownership(physician_profile_id);"
 psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_research(physician_first_name);
 CREATE INDEX ON open_payments_research(physician_last_name);
 CREATE INDEX ON open_payments_research(recipient_state);
@@ -326,3 +298,19 @@ CREATE INDEX ON open_payments_research(principal_investigator_4_state);
 CREATE INDEX ON open_payments_research(principal_investigator_5_first_name);
 CREATE INDEX ON open_payments_research(principal_investigator_5_last_name);
 CREATE INDEX ON open_payments_research(principal_investigator_5_state);"
+for year in 2016 2015 2014 2013; do
+	echo $year
+	psql -U postgres -h db.fivetwentyseven.com -c "COPY open_payments_ownership FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/ownership/OP_DTL_OWNRSHP_PGYR"$year"_P01172018.csv" health
+done
+psql -U postgres -h db.fivetwentyseven.com -d health -c "UPDATE open_payments_ownership
+SET physician_first_name = TRIM(UPPER(physician_first_name)),
+	physician_last_name = TRIM(UPPER(physician_last_name)),
+	recipient_state = TRIM(UPPER(recipient_state));"
+psql -U postgres -h db.fivetwentyseven.com -d health -c "CREATE INDEX ON open_payments_ownership(physician_first_name);
+CREATE INDEX ON open_payments_ownership(physician_last_name);
+CREATE INDEX ON open_payments_ownership(recipient_state);
+CREATE INDEX ON open_payments_ownership(physician_profile_id);"
+for year in 2016 2015 2014 2013; do
+	echo $year
+	psql -U postgres -h db.fivetwentyseven.com -c "COPY open_payments_deleted FROM STDIN WITH CSV HEADER DELIMITER ','" < "data/deleted/OP_REMOVED_DELETED_PGYR"$year"_P01172018.csv" health
+done
