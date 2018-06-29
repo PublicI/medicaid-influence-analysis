@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS open_payments_ownership (
 	Record_ID text,
 	Program_Year text,
 	Total_Amount_Invested_USDollars double precision,
-	Value_of_Interest text,
+	Value_of_Interest double precision,
 	Terms_of_Interest text,
 	Submitting_Applicable_Manufacturer_or_Applicable_GPO_Name text,
 	Applicable_Manufacturer_or_Applicable_GPO_Making_Payment_ID text,
