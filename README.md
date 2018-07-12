@@ -3,7 +3,7 @@ This repo contains code and data for "Medicaid: Under the Influence (LINK TO STO
 
 A detailed description of the methodology behind the story (can be read here).
 
-#### Here's what's in this repo.
+### Here's what's in this repo.
 
 ##### drug_payments.ipynb
 This Jupyter notebook contains code used to analyze drug company payments to doctors sitting on Medicaid pharmacy and therapeutics committees or drug utilization review boards.
@@ -40,3 +40,13 @@ This Excel file contains data on Medicaid spending. The data comes from the Cent
 
 ##### doc_payments.xlsx
 This Excel file contains data on pharmaceutical companies' payments to doctors sitting on Medicaid pharmacy and therapeutics committees or drug utilization review boards. The data comes from the Centers for Medicare and Medicaid Services' [Open Payments data](https://www.cms.gov/openpayments/) and the Medicaid pharmacy and therapeutics committees and drug utilization review boards of various states.
+
+### Data dictionaries
+
+##### Drug Lobbying
+* year: the year in which the lobbying took place
+* lobbyists: the number of lobbyists classified under the "Pharmaceutical manufacturing" business category
+* state: the state in which the lobbying took place
+* legislators: the number of state legislators
+* abbreviation: the abbreviation for the state in which the lobbying took place
+* lobbyists_to_legislators: the ratio of pharmaceutical industry lobbyists to state legislators
