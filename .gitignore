@@ -6,6 +6,5 @@
 [Ll]ocal
 [Ss]cripts
 .ipynb*
-*.xlsx
 .Rproj.user
 .json
