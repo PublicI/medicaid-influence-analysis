@@ -50,3 +50,31 @@ This Excel file contains data on pharmaceutical companies' payments to doctors s
 * legislators: the number of state legislators
 * abbreviation: the abbreviation for the state in which the lobbying took place
 * lobbyists_to_legislators: the ratio of pharmaceutical industry lobbyists to state legislators
+
+##### Medicaid Spending
+###### Budgets
+* year: the state's fiscal year, usually July through June but April through March in NY, September through August in TX and October through September in AL and MI
+* state: the state spending the money
+* medicaid_state: the state share of Medicaid spending
+* medicaid_federal: the federal share of Medicaid spending
+* medicaid_total: total Medicaid spending
+* all_spending_state: the state share of state budget expenditures
+* all_spending_federal: the federal share of state budget expenditures
+* all_spending_total: total state budget expenditures
+* medicaid_percentage_of_all_spending_total: the proportion of each state's budget dedicated to Medicaid spending
+###### Drugs
+* year: the calendar year
+* drug_spending: Medicaid drug spending prior to the application of rebates<sup>[1](#footnote1)</sup>
+* drug_rebates: drug rebates paid back to state Medicaid programs by pharmaceutical manufacturers
+* spending_less_rebates: Medicaid drug spending after the application of rebates
+
+###### Drug Spending Per Enrollee
+* year: the calendar year
+* enrollment: nationwide Medicaid enrollment<sup>[2](#footnote2)</sup>
+* spending_less_rebates: Medicaid drug spending after the application of rebates
+* spending_per_enrollee: Medicaid drug spending after the application of rebates per enrollee
+
+
+<a name="footnote1">1</a>: Drug spending data for Arizona’s Medicaid program in 2008 and 2009 was unavailable at the time of publication.
+
+<a name="footnote2">2</a>: Enrollment counts from 2008 through 2014 represent anyone who had at least one day of Medicaid coverage in the year, while figures from 2015 through 2016 represent the highest monthly enrollment in the year. Additionally, full data for a handful of states was unavailable in 2012 or 2013 so data from the previous year was used.
