@@ -1,5 +1,5 @@
-# Medicaid: Under the Influence
-This repo contains code and data for "Medicaid: Under the Influence (LINK TO STORY)," a Center for Public Integrity investigation of the influence pharmaceutical companies exercise over state Medicaid programs' drug purchasing decisions.
+# Medicaid, Under the Influence
+This repo contains code and data for "[Medicaid, Under the Influence](https://www.publicintegrity.org/2018/06/26/21890/how-drugmakers-sway-state-system-meant-protect-taxpayers-and-patients)," a Center for Public Integrity investigation of the influence pharmaceutical companies exercise over state Medicaid programs' drug purchasing decisions.
 
 A detailed description of the methodology behind the story [can be read here](https://www.publicintegrity.org/2018/07/10/21953/how-we-investigated-drugmakers-influence-over-medicaid).
 
@@ -32,8 +32,8 @@ This Bash script contains code used to load the Medicaid Pharmacy and Therapeuti
 ##### [load_lobbying.sh](load_lobbying.sh)
 This Bash script contains code used to load the NIMP lobbying data set into a PostgreSQL database.
 
-##### doc_payments.xlsx
-This Excel file contains data on pharmaceutical companies' payments to doctors sitting on Medicaid pharmacy and therapeutics committees or drug utilization review boards. The data comes from the Centers for Medicare and Medicaid Services' [Open Payments data](https://www.cms.gov/openpayments/) and the Medicaid pharmacy and therapeutics committees and drug utilization review boards of various states.
+##### [doc_payments.xlsx](data/doc_payments.xlsx)
+This Excel file contains data on pharmaceutical companies' payments to doctors sitting on Medicaid pharmacy and therapeutics committees or drug utilization review boards. The data comes from the Centers for Medicare and Medicaid Services' [Open Payments data](https://www.cms.gov/openpayments/) from August 2013 through December 2017 and the Medicaid pharmacy and therapeutics committees and drug utilization review boards of various states from January 2016 through June 2018.
 
 ##### [drug_lobbying.xlsx](data/drug_lobbying.xlsx)
 This Excel file contains data on pharmaceutical industry lobbying of state legislatures. The data comes from the [National Institue on Money in Politics](https://www.followthemoney.org) and the [National Conference of State Legislatures](http://www.ncsl.org).
@@ -44,7 +44,21 @@ This Excel file contains data on Medicaid spending. The data comes from the Cent
 ### Data dictionaries
 
 ##### Doc Payments
-
+###### Payments By Doctor
+* physician_profile_id: CMS-assigned unique identifier for the doctor receiving drug company payments
+* first_name: the doctor's first name
+* last_name: the doctor's last name
+* state_name: the doctor's state of practice
+* degree_1: the doctor's primary degree
+* degree_2: the doctor's seconday degree
+* payments_amount: the total amount of drug company payments to the doctor
+* number_of_payments: the number of payments to the doctor
+###### Payments By State
+* state_name: the state name
+* total_doctors: the number of doctors serving on the state's Medicaid pharmacy and therapeutics committee and/or drug utilization review board
+* doctors_paid: the number of doctors serving on the state's Medicaid pharmacy and therapeutics committee and/or drug utilization review board who received any drug company money
+* total_payments: the total amount of drug company payments to doctors serving on the state's Medicaid pharmacy and therapeutics committee and/or drug utilization review board
+* max_payment: the total amount of drug company payments to the doctor serving on the state's Medicaid pharmacy and therapeutics committee and/or drug utilization review board who received the most drug company money
 
 ##### Drug Lobbying
 * year: the year in which the lobbying took place
