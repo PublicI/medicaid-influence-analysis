@@ -1,7 +1,7 @@
 # Medicaid, Under the Influence
-This repo contains code and data for "[Medicaid, Under the Influence](https://www.publicintegrity.org/2018/06/26/21890/how-drugmakers-sway-state-system-meant-protect-taxpayers-and-patients)," a Center for Public Integrity investigation of the influence pharmaceutical companies exercise over state Medicaid programs' drug purchasing decisions.
+This repo contains code and data for "[Medicaid, Under the Influence](https://www.publicintegrity.org/2018/07/18/21890/medicaid-under-the-influence)," a Center for Public Integrity investigation of the influence pharmaceutical companies exercise over state Medicaid programs' drug purchasing decisions.
 
-A detailed description of the methodology behind the story [can be read here](https://www.publicintegrity.org/2018/07/10/21953/how-we-investigated-drugmakers-influence-over-medicaid).
+A detailed description of the methodology behind the story [can be read here](https://www.publicintegrity.org/2018/07/18/21953/how-we-investigated-drugmakers-influence-over-medicaid).
 
 ### Here's what's in this repo.
 
